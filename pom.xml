@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Com.Stackroute</groupId>
 	<artifactId>KeepNote-Step2-Boilerplate</artifactId>
@@ -27,6 +27,7 @@
 		</dependency>
 
 		<!-- Dependency for jaxb-api to be added(if using JDK9) -->
+
 		<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
@@ -34,8 +35,8 @@
 			<version>2.3.0</version>
 		</dependency>
 
-
 		<!-- Dependency for jaxb-impl to be added(if using JDK9) -->
+
 		<!-- https://mvnrepository.com/artifact/javax.xml/jaxb-impl -->
 		<dependency>
 			<groupId>javax.xml</groupId>
@@ -43,8 +44,8 @@
 			<version>2.1</version>
 		</dependency>
 
-
 		<!-- Dependency for commons-dbcp to be added -->
+
 		<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -52,8 +53,8 @@
 			<version>1.4</version>
 		</dependency>
 
-
 		<!-- Dependency for jstl to be added -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -83,7 +84,15 @@
 			<version>5.2.16.Final</version>
 		</dependency>
 
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager &ndash;&gt;-->
+		<!--<dependency>-->
+		<!--<groupId>org.hibernate</groupId>-->
+		<!--<artifactId>hibernate-entitymanager</artifactId>-->
+		<!--<version>5.3.6.Final</version>-->
+		<!--</dependency>-->
+
 		<!-- Dependency for mysql-connector to be added -->
+
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -91,18 +100,13 @@
 			<version>5.1.38</version>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>5.0.4.RELEASE</version>
 		</dependency>
 
-		<!-- Dependency for mockito-all to be added -->
-		<!--<dependency>-->
-			<!--<groupId>org.mockito</groupId>-->
-			<!--<artifactId>mockito-all</artifactId>-->
-			<!--<version>1.8.4</version>-->
-		<!--</dependency>-->
 		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
 		<dependency>
 			<groupId>org.mockito</groupId>

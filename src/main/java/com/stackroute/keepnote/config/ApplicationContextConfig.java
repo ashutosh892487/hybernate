@@ -1,19 +1,10 @@
 package com.stackroute.keepnote.config;
 
-/*This class will contain the application-context for the application. 
- * Define the following annotations:
- * @Configuration - Annotating a class with the @Configuration indicates that the 
- *                  class can be used by the Spring IoC container as a source of 
- *                  bean definitions
- * @EnableTransactionManagement - Enables Spring's annotation-driven transaction management capability.
- *                  
- * */
-
 import com.stackroute.keepnote.model.Note;
-import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -23,6 +14,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/*This class will contain the application-context for the application.
+ * Define the following annotations:
+ * @Configuration - Annotating a class with the @Configuration indicates that the
+ *                  class can be used by the Spring IoC container as a source of
+ *                  bean definitions
+ * @EnableTransactionManagement - Enables Spring's annotation-driven transaction management capability.
+ *
+ * */
 @Configuration
 @EnableTransactionManagement
 public class ApplicationContextConfig {
@@ -40,14 +39,8 @@ public class ApplicationContextConfig {
 		dataSource.setUrl("jdbc:mysql://localhost:3306/notedb");
 		dataSource.setUsername("root");
 		dataSource.setPassword("1234567890");
-
 		return dataSource;
 	}
-
-	/*
-	 * Define the bean for SessionFactory. Hibernate SessionFactory is the factory
-	 * class through which we get sessions and perform database operations.
-	 */
 	@Bean
 	@Autowired
 	public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
@@ -59,8 +52,20 @@ public class ApplicationContextConfig {
 		hibernateProperties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
 		sessionFactoryBean.setAnnotatedClasses(Note.class);
 		sessionFactoryBean.setHibernateProperties(hibernateProperties);
-		return sessionFactoryBean;    }
+		return sessionFactoryBean;
+	}
 
+	/*
+	 * Define the bean for SessionFactory. Hibernate SessionFactory is the factory
+	 * class through which we get sessions and perform database operations.
+	 */
+	@Bean
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory s) {
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(s);
+		return txManager;
+	}
 	/*
 	 * Define the bean for Transaction Manager. HibernateTransactionManager handles
 	 * transaction in Spring. The application that uses single hibernate session
@@ -69,11 +74,4 @@ public class ApplicationContextConfig {
 	 * JDBC too. HibernateTransactionManager allows bulk update and bulk insert and
 	 * ensures data integrity.
 	 */
-	@Bean
-	@Autowired
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager hibernatetransactionmanager = new HibernateTransactionManager();
-		hibernatetransactionmanager.setSessionFactory(sessionFactory);
-		return hibernatetransactionmanager;
-	}
 }

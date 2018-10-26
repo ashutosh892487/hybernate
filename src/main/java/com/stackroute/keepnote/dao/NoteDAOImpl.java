@@ -2,15 +2,15 @@ package com.stackroute.keepnote.dao;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
-import org.hibernate.SessionFactory;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+import com.stackroute.keepnote.model.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.stackroute.keepnote.model.Note;
+import javax.persistence.Query;
 
 /*
  * This class is implementing the NoteDAO interface. This class has to be annotated with @Repository
@@ -23,17 +23,16 @@ import com.stackroute.keepnote.model.Note;
  * */
 @Repository
 @Transactional
+
 public class NoteDAOImpl implements NoteDAO {
 
 	/*
 	 * Autowiring should be implemented for the SessionFactory.
 	 */
-
 	@Autowired
 	SessionFactory sessionFactory;
-
 	public NoteDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
+		this.sessionFactory=sessionFactory;
 	}
 
 	public SessionFactory getSessionFactory() {
@@ -43,7 +42,6 @@ public class NoteDAOImpl implements NoteDAO {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 	/*
 	 * Save the note in the database(note) table.
 	 */
@@ -53,7 +51,6 @@ public class NoteDAOImpl implements NoteDAO {
 		session.save(note);
 		session.flush();
 		return true;
-
 	}
 
 	/*
@@ -63,12 +60,12 @@ public class NoteDAOImpl implements NoteDAO {
 	public boolean deleteNote(int noteId) {
 		if(getNoteById(noteId)==null) {
 			return false;
-		}else {
+		}
+		else {
 			Session session = sessionFactory.getCurrentSession();
 			session.delete(getNoteById(noteId));
 			session.flush();
 			return true;
-
 		}
 	}
 
@@ -94,6 +91,7 @@ public class NoteDAOImpl implements NoteDAO {
 		session.flush();
 		return note;
 
+
 	}
 
 	/* Update existing note */
@@ -101,12 +99,14 @@ public class NoteDAOImpl implements NoteDAO {
 	public boolean UpdateNote(Note note) {
 		if(getNoteById(note.getNoteId())==null) {
 			return false;
-		}else {
+		}
+		else {
 			sessionFactory.getCurrentSession().clear();
 			sessionFactory.getCurrentSession().update(note);
 			sessionFactory.getCurrentSession().flush();
 			return true;
 		}
+
 
 	}
 

@@ -9,20 +9,18 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-
 /*This class will contain bean for viewresolver
  * Define the following annotations:
- * @Configuration - Annotating a class with the @Configuration indicates that the 
- *                  class can be used by the Spring IoC container as a source of 
+ * @Configuration - Annotating a class with the @Configuration indicates that the
+ *                  class can be used by the Spring IoC container as a source of
  *                  bean definitions
  * @ComponentScan - this annotation is used to search for the Spring components amongst the application
- * @EnableWebMvc - Adding this annotation to an @Configuration class imports the Spring MVC 
- * 				   configuration from WebMvcConfigurationSupport 
+ * @EnableWebMvc - Adding this annotation to an @Configuration class imports the Spring MVC
+ * 				   configuration from WebMvcConfigurationSupport
  * */
-
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages="com.stackroute.keepnote")
+@ComponentScan(basePackages = "com.stackroute.keepnote")
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	/*
